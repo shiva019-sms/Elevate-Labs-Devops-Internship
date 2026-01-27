@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD & GitHub Workflows | Modern Showcase</title>
+    <meta name="description" content="A modern showcase of CI/CD pipelines and GitHub Actions workflows.">
+
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">DevOps<span class="accent">Flow</span></a>
+            <ul class="nav-links">
+                <li><a href="#concepts">Concepts</a></li>
+                <li><a href="#tutorial">Guide</a></li>
+                <li><a href="#demo">Live Demo</a></li>
+                <li><a href="https://github.com/features/actions" target="_blank" class="btn-secondary">Docs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Automate your <span class="gradient-text">Software Delivery</span></h1>
+            <p class="hero-subtitle">Master CI/CD pipelines and GitHub Workflows to build, test, and deploy code with
+                speed and confidence.</p>
+            <div class="hero-btns">
+                <a href="#demo" class="btn-primary"><i class="fa-solid fa-play"></i> Try the Demo</a>
+                <a href="#concepts" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concepts Grid -->
+    <section id="concepts" class="concepts">
+        <div class="container">
+            <h2 class="section-title">Core Concepts</h2>
+            <div class="grid">
+                <!-- Card 1: CI -->
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-code-branch"></i></div>
+                    <h3>Continuous Integration</h3>
+                    <p>Automatically merge code changes into a central repository. Run builds and tests to find bugs
+                        early.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Automated Testing</li>
+                        <li><i class="fa-solid fa-check"></i> Code Linting</li>
+                        <li><i class="fa-solid fa-check"></i> Early Bug Detection</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: CD -->
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Continuous Delivery</h3>
+                    <p>Automate the release process. Deploy application changes to staging or production environments
+                        safely.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> Automated Deployment</li>
+                        <li><i class="fa-solid fa-check"></i> Environment Management</li>
+                        <li><i class="fa-solid fa-check"></i> Zero Downtime</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: GitHub Actions -->
+                <div class="card">
+                    <div class="card-icon"><i class="fa-brands fa-github"></i></div>
+                    <h3>GitHub Actions</h3>
+                    <p>Automate your workflow from idea to production. Write YAML workflows to build, test, and deploy
+                        directly from GitHub.</p>
+                    <ul class="feature-list">
+                        <li><i class="fa-solid fa-check"></i> YAML Workflows</li>
+                        <li><i class="fa-solid fa-check"></i> Matrix Builds</li>
+                        <li><i class="fa-solid fa-check"></i> Custom Runners</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section id="tutorial" class="tutorial-section">
+        <div class="container">
+            <h2 class="section-title">Step-by-Step Guide</h2>
+            <p class="section-subtitle">Lets build your first CI/CD pipeline from scratch.</p>
+
+            <div class="timeline">
+                <!-- Step 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Create a GitHub Repository</h3>
+                        <p>Go to GitHub and create a new public repository named <code>my-first-pipeline</code>.
+                            Initialize it with a README.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Add a Simple Project</h3>
+                        <p>Create a simple <code>index.html</code> file in your repository. This will be the "project"
+                            we are checking.</p>
+                        <div class="code-block">
+                            <span class="comment"><!-- index.html --></span>
+                            &lt;!DOCTYPE html&gt;
+                            &lt;html&gt;
+                            &lt;body&gt;
+                            &lt;h1&gt;Hello World&lt;/h1&gt;
+                            &lt;/body&gt;
+                            &lt;/html&gt;
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Create Workflow Folder</h3>
+                        <p>In your repository, create the following directory structure. This is where GitHub looks for
+                            workflows.</p>
+                        <div class="code-block">.github/workflows/</div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Write Your First CI Pipeline</h3>
+                        <p>Create a file named <code>ci.yml</code> inside the workflows folder and add this content:</p>
+                        <div class="code-block">
+                            <span class="keyword">name:</span> Simple CI Pipeline
+
+                            <span class="keyword">on:</span> [push]
+
+                            <span class="keyword">jobs:</span>
+                            <span class="section">build-test:</span>
+                            <span class="keyword">runs-on:</span> ubuntu-latest
+                            <span class="keyword">steps:</span>
+                            - <span class="keyword">name:</span> Checkout code
+                            <span class="keyword">uses:</span> actions/checkout@v3
+
+                            - <span class="keyword">name:</span> Run a script
+                            <span class="keyword">run:</span> echo "Building and testing..."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-content">
+                        <h3>Push Changes & Run Pipeline</h3>
+                        <p>Commit your changes and push them to GitHub. This will automatically trigger the workflow.
+                        </p>
+                        <div class="code-block">
+                            git add .
+                            git commit -m "Add CI pipeline"
+                            git push origin main
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">6</div>
+                    <div class="timeline-content">
+                        <h3>View Execution Logs</h3>
+                        <p>Go to the <strong>Actions</strong> tab in your GitHub repository. Click on the latest run to
+                            see the "build-test" job executing.</p>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">7</div>
+                    <div class="timeline-content">
+                        <h3>Environment Variables & Secrets</h3>
+                        <p>Store sensitive data in "Settings > Secrets". You can access them in YAML like this:</p>
+                        <div class="code-block">
+                            <span class="keyword">env:</span>
+                            <span class="keyword">API_KEY:</span> ${{ secrets.MY_API_KEY }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">8</div>
+                    <div class="timeline-content">
+                        <h3>Break the Pipeline Intentionally ❌</h3>
+                        <p>Edit your workflow to add a command that fails, to see how errors look.</p>
+                        <div class="code-block">
+                            - <span class="keyword">name:</span> Cause Failure
+                            <span class="keyword">run:</span> exit 1
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 9 -->
+                <div class="timeline-item">
+                    <div class="timeline-number">9</div>
+                    <div class="timeline-content">
+                        <h3>Fix the Pipeline ✅</h3>
+                        <p>Remove the failing command and push again. Watch the status turn green!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Pipeline Demo</h2>
+            <p class="section-subtitle">Visualize how a typical GitHub Actions workflow executes.</p>
+
+            <div class="pipeline-container">
+                <div class="pipeline-header">
+                    <div class="repo-info">
+                        <i class="fa-brands fa-github"></i>
+                        <span>user/awesome-project</span>
+                    </div>
+                    <button id="run-pipeline-btn" class="btn-small"><i class="fa-solid fa-play"></i> Run
+                        Workflow</button>
+                    <span id="pipeline-status" class="status-badge status-idle">Idle</span>
+                </div>
+
+                <div class="pipeline-visual">
+                    <!-- Step 1: Build -->
+                    <div class="step" id="step-build">
+                        <div class="step-icon"><i class="fa-solid fa-box"></i></div>
+                        <div class="step-label">Build</div>
+                        <div class="step-status"><i class="fa-solid fa-circle"></i></div>
+                    </div>
+                    <div class="connector" id="conn-1"></div>
+
+                    <!-- Step 2: Test -->
+                    <div class="step" id="step-test">
+                        <div class="step-icon"><i class="fa-solid fa-vial"></i></div>
+                        <div class="step-label">Test</div>
+                        <div class="step-status"><i class="fa-solid fa-circle"></i></div>
+                    </div>
+                    <div class="connector" id="conn-2"></div>
+
+                    <!-- Step 3: Deploy -->
+                    <div class="step" id="step-deploy">
+                        <div class="step-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <div class="step-label">Deploy</div>
+                        <div class="step-status"><i class="fa-solid fa-circle"></i></div>
+                    </div>
+                </div>
+
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="terminal-title">Workflow Logs</span>
+                    </div>
+                    <div class="terminal-body" id="terminal-content">
+                        <div class="log-line text-muted">$ Waiting for workflow trigger...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 DevOpsFlow. Built for Elevate Labs.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
