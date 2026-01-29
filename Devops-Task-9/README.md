@@ -1,7 +1,3 @@
-
-# Elevate-Labs-Devops-Internship
-Jan- DevOps Internship-2026
-
 # Task 9: Docker Basics – Containerizing an Application
 
 ## 📋 Task Overview
@@ -235,16 +231,6 @@ Expected output:
 ✅ Server is RUNNING at http://localhost:3000
 ```
 
-## 📸 Screenshots Included
-
-1. **Docker Build Output** - Shows successful image creation
-2. **Docker Images List** - Displays the built image
-3. **Docker Run Output** - Container starting in background
-4. **Docker PS Output** - Running container with port mapping
-5. **Application in Browser** - Web app running successfully
-6. **Docker Logs** - Container console output
-7. **Docker Stop & Remove** - Cleanup commands
-
 ## ❓ Interview Questions & Answers
 
 ### 1. What is Docker?
@@ -397,9 +383,4 @@ This task successfully demonstrated:
 6. **Cleanup**: Proper resource management and cleanup procedures
 7. **Image Optimization**: Layer caching and minimal image size
 
-## 🔗 Resources
-
-- [Docker Official Documentation](https://docs.docker.com/)
-- [Docker Hub](https://hub.docker.com/)
-- [Dockerfile Best Practices](https://docs.docker.com/develop/dev-best-practices/)
 
