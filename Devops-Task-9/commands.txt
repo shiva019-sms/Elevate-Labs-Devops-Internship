@@ -1,0 +1,499 @@
+# ============================================
+# DOCKER TASK 9 - ALL COMMANDS USED
+# ============================================
+
+# ============================================
+# 1. DOCKER INSTALLATION VERIFICATION
+# ============================================
+
+# Check Docker version
+docker version
+
+# Display Docker system information
+docker info
+
+# Check Docker service status (Linux/Mac)
+sudo systemctl status docker
+
+# Start Docker service (if needed)
+sudo systemctl start docker
+
+
+# ============================================
+# 2. PROJECT SETUP
+# ============================================
+
+# Navigate to project directory
+cd Docker-tutorial-app
+
+# List files in project
+ls -la
+
+# View project structure
+tree
+
+# View Dockerfile content
+cat Dockerfile
+
+# View server.js content
+cat server.js
+
+# View package.json content
+cat package.json
+
+
+# ============================================
+# 3. DOCKER IMAGE BUILDING
+# ============================================
+
+# Build Docker image with tag
+docker build -t docker-tutorial-app .
+
+# Build with specific tag version
+docker build -t docker-tutorial-app:v1.0 .
+
+# Build with no cache (force rebuild)
+docker build --no-cache -t docker-tutorial-app .
+
+# Build and show detailed output
+docker build -t docker-tutorial-app . --progress=plain
+
+
+# ============================================
+# 4. DOCKER IMAGES MANAGEMENT
+# ============================================
+
+# List all Docker images
+docker images
+
+# List images with specific name
+docker images docker-tutorial-app
+
+# List all images with full details
+docker images -a
+
+# Show image details in JSON format
+docker image inspect docker-tutorial-app
+
+# Show image history (layers)
+docker history docker-tutorial-app
+
+# Get image size
+docker images --format "{{.Repository}}:{{.Tag}} - {{.Size}}"
+
+
+# ============================================
+# 5. DOCKER CONTAINER RUNNING
+# ============================================
+
+# Run container in detached mode with port mapping
+docker run -d -p 3000:3000 --name my-app-container docker-tutorial-app
+
+# Run container in interactive mode (foreground)
+docker run -p 3000:3000 --name my-app-container docker-tutorial-app
+
+# Run with custom port mapping
+docker run -d -p 8080:3000 --name my-app-container docker-tutorial-app
+
+# Run with environment variables
+docker run -d -p 3000:3000 -e NODE_ENV=production --name my-app-container docker-tutorial-app
+
+# Run with volume mounting (for development)
+docker run -d -p 3000:3000 -v $(pwd):/app --name my-app-container docker-tutorial-app
+
+# Run with automatic restart policy
+docker run -d -p 3000:3000 --restart unless-stopped --name my-app-container docker-tutorial-app
+
+# Run and automatically remove container when stopped
+docker run --rm -p 3000:3000 --name my-app-container docker-tutorial-app
+
+
+# ============================================
+# 6. CONTAINER STATUS & MONITORING
+# ============================================
+
+# List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+
+# List containers with specific format
+docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+# Show container resource usage (CPU, Memory)
+docker stats my-app-container
+
+# Show container resource usage for all containers
+docker stats
+
+# Get container IP address
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-app-container
+
+
+# ============================================
+# 7. CONTAINER LOGS & DEBUGGING
+# ============================================
+
+# View container logs
+docker logs my-app-container
+
+# Follow logs in real-time
+docker logs -f my-app-container
+
+# View last 50 lines of logs
+docker logs --tail 50 my-app-container
+
+# View logs with timestamps
+docker logs -t my-app-container
+
+# View logs from specific time
+docker logs --since 10m my-app-container
+
+
+# ============================================
+# 8. CONTAINER INSPECTION
+# ============================================
+
+# Inspect container details (JSON format)
+docker inspect my-app-container
+
+# Get specific field from inspect
+docker inspect --format='{{.State.Status}}' my-app-container
+
+# View container processes
+docker top my-app-container
+
+# Show port mappings
+docker port my-app-container
+
+
+# ============================================
+# 9. EXECUTING COMMANDS IN CONTAINER
+# ============================================
+
+# Execute interactive shell in running container
+docker exec -it my-app-container /bin/sh
+
+# Execute specific command in container
+docker exec my-app-container ls -la
+
+# Execute command as specific user
+docker exec -u node my-app-container whoami
+
+# Run node command inside container
+docker exec my-app-container node --version
+
+# Check npm packages inside container
+docker exec my-app-container npm list
+
+
+# ============================================
+# 10. CONTAINER LIFECYCLE MANAGEMENT
+# ============================================
+
+# Stop container gracefully (10 second timeout)
+docker stop my-app-container
+
+# Stop container immediately
+docker stop -t 0 my-app-container
+
+# Start stopped container
+docker start my-app-container
+
+# Restart running container
+docker restart my-app-container
+
+# Pause container (freeze processes)
+docker pause my-app-container
+
+# Unpause container
+docker unpause my-app-container
+
+# Kill container (force stop)
+docker kill my-app-container
+
+
+# ============================================
+# 11. CONTAINER REMOVAL
+# ============================================
+
+# Remove stopped container
+docker rm my-app-container
+
+# Force remove running container
+docker rm -f my-app-container
+
+# Remove container and its volumes
+docker rm -v my-app-container
+
+# Remove all stopped containers
+docker container prune
+
+# Remove all stopped containers (with confirmation)
+docker container prune -f
+
+
+# ============================================
+# 12. IMAGE REMOVAL & CLEANUP
+# ============================================
+
+# Remove Docker image
+docker rmi docker-tutorial-app
+
+# Force remove image
+docker rmi -f docker-tutorial-app
+
+# Remove image by ID
+docker rmi <image-id>
+
+# Remove all unused images
+docker image prune
+
+# Remove all images forcefully
+docker image prune -a
+
+# Remove all unused images without confirmation
+docker image prune -a -f
+
+
+# ============================================
+# 13. TESTING APPLICATION
+# ============================================
+
+# Test application using curl
+curl http://localhost:3000
+
+# Test with verbose output
+curl -v http://localhost:3000
+
+# Check if port is listening
+netstat -tulpn | grep 3000
+
+# Alternative port check (Linux)
+ss -tulpn | grep 3000
+
+# Test from inside container
+docker exec my-app-container curl http://localhost:3000
+
+
+# ============================================
+# 14. COPYING FILES TO/FROM CONTAINER
+# ============================================
+
+# Copy file from container to host
+docker cp my-app-container:/app/server.js ./server-backup.js
+
+# Copy file from host to container
+docker cp ./newfile.txt my-app-container:/app/
+
+# Copy entire directory from container
+docker cp my-app-container:/app ./backup-app
+
+
+# ============================================
+# 15. DOCKER NETWORK COMMANDS
+# ============================================
+
+# List Docker networks
+docker network ls
+
+# Inspect network
+docker network inspect bridge
+
+# Create custom network
+docker network create my-network
+
+# Connect container to network
+docker network connect my-network my-app-container
+
+# Disconnect container from network
+docker network disconnect my-network my-app-container
+
+
+# ============================================
+# 16. DOCKER VOLUME COMMANDS
+# ============================================
+
+# List all volumes
+docker volume ls
+
+# Create named volume
+docker volume create my-data
+
+# Inspect volume
+docker volume inspect my-data
+
+# Remove volume
+docker volume rm my-data
+
+# Remove all unused volumes
+docker volume prune
+
+
+# ============================================
+# 17. ADVANCED IMAGE OPERATIONS
+# ============================================
+
+# Tag existing image with new name
+docker tag docker-tutorial-app:latest docker-tutorial-app:v1.0
+
+# Save image to tar file
+docker save -o docker-tutorial-app.tar docker-tutorial-app
+
+# Load image from tar file
+docker load -i docker-tutorial-app.tar
+
+# Export container filesystem to tar
+docker export my-app-container > container-backup.tar
+
+# Import container from tar
+docker import container-backup.tar my-imported-image
+
+
+# ============================================
+# 18. DOCKER SYSTEM COMMANDS
+# ============================================
+
+# Show disk usage
+docker system df
+
+# Show detailed disk usage
+docker system df -v
+
+# Remove all unused data (containers, images, networks, volumes)
+docker system prune
+
+# Remove everything including volumes
+docker system prune -a --volumes
+
+# Get Docker events in real-time
+docker events
+
+# Show Docker info
+docker info
+
+
+# ============================================
+# 19. BULK OPERATIONS
+# ============================================
+
+# Stop all running containers
+docker stop $(docker ps -q)
+
+# Remove all stopped containers
+docker rm $(docker ps -a -q)
+
+# Remove all images
+docker rmi $(docker images -q)
+
+# Stop and remove all containers
+docker stop $(docker ps -q) && docker rm $(docker ps -a -q)
+
+# Complete cleanup (containers + images + volumes)
+docker stop $(docker ps -q) 2>/dev/null; docker rm $(docker ps -a -q) 2>/dev/null; docker rmi $(docker images -q) 2>/dev/null
+
+
+# ============================================
+# 20. TROUBLESHOOTING COMMANDS
+# ============================================
+
+# Check container exit code
+docker inspect --format='{{.State.ExitCode}}' my-app-container
+
+# View container configuration
+docker inspect --format='{{json .Config}}' my-app-container | jq
+
+# Check container health (if healthcheck defined)
+docker inspect --format='{{json .State.Health}}' my-app-container
+
+# View container environment variables
+docker exec my-app-container env
+
+# Check container filesystem changes
+docker diff my-app-container
+
+
+# ============================================
+# 21. DOCKER COMPOSE (if used)
+# ============================================
+
+# Start services defined in docker-compose.yml
+docker-compose up -d
+
+# Stop and remove containers
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Rebuild and start
+docker-compose up -d --build
+
+
+# ============================================
+# 22. USEFUL ALIASES (add to .bashrc or .zshrc)
+# ============================================
+
+# alias dps='docker ps'
+# alias dpsa='docker ps -a'
+# alias di='docker images'
+# alias drm='docker rm'
+# alias drmi='docker rmi'
+# alias dstop='docker stop'
+# alias dstart='docker start'
+# alias dlogs='docker logs'
+# alias dexec='docker exec -it'
+
+
+# ============================================
+# 23. FINAL VERIFICATION COMMANDS
+# ============================================
+
+# Verify image was built successfully
+docker images | grep docker-tutorial-app
+
+# Verify container is running
+docker ps | grep my-app-container
+
+# Verify application is accessible
+curl -I http://localhost:3000
+
+# Verify logs show successful start
+docker logs my-app-container | grep "Server is RUNNING"
+
+# Complete status check
+echo "=== Docker Version ===" && docker version && \
+echo "=== Images ===" && docker images && \
+echo "=== Running Containers ===" && docker ps && \
+echo "=== Application Test ===" && curl -s http://localhost:3000 | head -5
+
+
+# ============================================
+# 24. CLEANUP SEQUENCE (After Task Completion)
+# ============================================
+
+# Step 1: Stop the container
+docker stop my-app-container
+
+# Step 2: Remove the container
+docker rm my-app-container
+
+# Step 3: Remove the image
+docker rmi docker-tutorial-app
+
+# Step 4: Clean up unused resources
+docker system prune -f
+
+# Step 5: Verify cleanup
+docker ps -a
+docker images
+
+
+# ============================================
+# END OF COMMANDS
+# ============================================
+
+# Note: Replace 'my-app-container' with your actual container name
+# Note: Replace 'docker-tutorial-app' with your actual image name
+# Note: Some commands may require 'sudo' depending on your system configuration
