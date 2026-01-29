@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Tutorial - Complete Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fab fa-docker"></i>
+                <span>Docker Tutorial</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#introduction" class="nav-link">Introduction</a></li>
+                <li><a href="#installation" class="nav-link">Installation</a></li>
+                <li><a href="#commands" class="nav-link">Commands</a></li>
+                <li><a href="#dockerfile" class="nav-link">Dockerfile</a></li>
+                <li><a href="#examples" class="nav-link">Examples</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Master Docker</h1>
+            <p class="hero-subtitle">Learn containerization from scratch with step-by-step tutorials</p>
+            <div class="hero-buttons">
+                <a href="#introduction" class="btn btn-primary">Get Started</a>
+                <a href="#examples" class="btn btn-secondary">View Examples</a>
+            </div>
+        </div>
+        <div class="hero-animation">
+            <div class="docker-container">
+                <i class="fab fa-docker"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <h2 class="section-title">What is Docker?</h2>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <div class="card-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3>Containerization Platform</h3>
+                    <p>Docker is an open-source platform that enables developers to package applications and their dependencies into containers for consistent deployment across environments.</p>
+                </div>
+                <div class="intro-card">
+                    <div class="card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fast & Efficient</h3>
+                    <p>Containers are lightweight and start in seconds, making development and deployment faster than traditional virtual machines.</p>
+                </div>
+                <div class="intro-card">
+                    <div class="card-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Isolated Environments</h3>
+                    <p>Each container runs in isolation, ensuring that applications don't interfere with each other and maintaining security.</p>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <h3>Docker vs Virtual Machines</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <h4><i class="fab fa-docker"></i> Docker Containers</h4>
+                        <ul>
+                            <li>✓ Lightweight (MBs)</li>
+                            <li>✓ Boots in seconds</li>
+                            <li>✓ Shares host OS kernel</li>
+                            <li>✓ Less resource intensive</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-item">
+                        <h4><i class="fas fa-server"></i> Virtual Machines</h4>
+                        <ul>
+                            <li>• Heavy (GBs)</li>
+                            <li>• Boots in minutes</li>
+                            <li>• Full OS required</li>
+                            <li>• More resource intensive</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Installation Guide</h2>
+            
+            <div class="installation-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="linux">
+                        <i class="fab fa-linux"></i> Linux
+                    </button>
+                    <button class="tab-btn" data-tab="windows">
+                        <i class="fab fa-windows"></i> Windows
+                    </button>
+                    <button class="tab-btn" data-tab="mac">
+                        <i class="fab fa-apple"></i> macOS
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="linux">
+                    <h3>Install Docker on Linux (Ubuntu/Debian)</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Update Package Index</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>sudo apt update
+sudo apt upgrade -y</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Install Prerequisites</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>sudo apt install apt-transport-https ca-certificates curl software-properties-common -y</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Add Docker's Official GPG Key</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Add Docker Repository</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Install Docker Engine</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io -y</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Verify Installation</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>docker --version
+docker info</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>Add User to Docker Group (Optional)</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="windows">
+                    <h3>Install Docker on Windows</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>System Requirements</h4>
+                            <ul>
+                                <li>Windows 10 64-bit: Pro, Enterprise, or Education</li>
+                                <li>Hyper-V and Containers Windows features enabled</li>
+                                <li>BIOS-level hardware virtualization support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Download Docker Desktop</h4>
+                            <p>Visit <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker Desktop for Windows</a> and download the installer.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Run the Installer</h4>
+                            <p>Double-click Docker Desktop Installer.exe and follow the installation wizard.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Start Docker Desktop</h4>
+                            <p>Launch Docker Desktop from the Start menu and wait for it to start.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Verify Installation</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>docker --version
+docker run hello-world</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="mac">
+                    <h3>Install Docker on macOS</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>System Requirements</h4>
+                            <ul>
+                                <li>macOS 10.15 or newer</li>
+                                <li>Apple silicon (M1/M2) or Intel processor</li>
+                                <li>At least 4GB RAM</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Download Docker Desktop</h4>
+                            <p>Visit <a href="https://www.docker.com/products/docker-desktop" target="_blank">Docker Desktop for Mac</a> and download the appropriate version for your chip (Intel or Apple Silicon).</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Install Docker Desktop</h4>
+                            <p>Drag Docker.app to your Applications folder and launch it.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Verify Installation</h4>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre><code>docker --version
+docker run hello-world</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands Section -->
+    <section id="commands" class="section">
+        <div class="container">
+            <h2 class="section-title">Essential Docker Commands</h2>
+            
+            <div class="command-categories">
+                <div class="command-category">
+                    <h3><i class="fas fa-image"></i> Image Commands</h3>
+                    <div class="command-list">
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker images</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker images')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>List all Docker images on your system</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker pull &lt;image&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker pull')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Download an image from Docker Hub</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker build -t &lt;name&gt; .</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker build -t myapp .')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Build an image from a Dockerfile</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker rmi &lt;image&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker rmi')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Remove an image</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker tag &lt;source&gt; &lt;target&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker tag')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Tag an image with a new name</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="command-category">
+                    <h3><i class="fas fa-box-open"></i> Container Commands</h3>
+                    <div class="command-list">
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker run &lt;image&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker run')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Create and start a container from an image</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker ps</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker ps')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>List running containers</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker ps -a</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker ps -a')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>List all containers (including stopped)</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker stop &lt;container&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker stop')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Stop a running container</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker start &lt;container&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker start')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Start a stopped container</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker rm &lt;container&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker rm')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Remove a stopped container</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker exec -it &lt;container&gt; bash</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker exec -it container bash')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Execute a command in a running container</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="command-category">
+                    <h3><i class="fas fa-info-circle"></i> Monitoring Commands</h3>
+                    <div class="command-list">
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker logs &lt;container&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker logs')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>View container logs</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker logs -f &lt;container&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker logs -f')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Follow container logs in real-time</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker inspect &lt;container&gt;</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker inspect')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Display detailed container information</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker stats</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker stats')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Display resource usage statistics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="command-category">
+                    <h3><i class="fas fa-broom"></i> Cleanup Commands</h3>
+                    <div class="command-list">
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker system prune</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker system prune')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Remove unused data</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker container prune</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker container prune')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Remove all stopped containers</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker image prune</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker image prune')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Remove unused images</p>
+                        </div>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>docker volume prune</code>
+                                <button class="copy-btn-small" onclick="copyCommand(this, 'docker volume prune')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p>Remove unused volumes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="run-flags-box">
+                <h3>Common Docker Run Flags</h3>
+                <div class="flags-grid">
+                    <div class="flag-item">
+                        <code>-d</code>
+                        <p>Run container in detached mode (background)</p>
+                    </div>
+                    <div class="flag-item">
+                        <code>-p</code>
+                        <p>Publish container port to host (-p 8080:80)</p>
+                    </div>
+                    <div class="flag-item">
+                        <code>-v</code>
+                        <p>Bind mount a volume (-v /host:/container)</p>
+                    </div>
+                    <div class="flag-item">
+                        <code>--name</code>
+                        <p>Assign a name to the container</p>
+                    </div>
+                    <div class="flag-item">
+                        <code>-e</code>
+                        <p>Set environment variables (-e VAR=value)</p>
+                    </div>
+                    <div class="flag-item">
+                        <code>-it</code>
+                        <p>Interactive mode with TTY</p>
+                    </div>
+                    <div class="flag-item">
+                        <code>--rm</code>
+                        <p>Automatically remove container when it exits</p>
+                    </div>
+                    <div class="flag-item">
+                        <code>--network</code>
+                        <p>Connect container to a network</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dockerfile Section -->
+    <section id="dockerfile" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Understanding Dockerfile</h2>
+            
+            <div class="dockerfile-intro">
+                <p>A Dockerfile is a text document containing instructions to build a Docker image. Each instruction creates a layer in the final image.</p>
+            </div>
+
+            <div class="dockerfile-structure">
+                <h3>Dockerfile Structure & Instructions</h3>
+                
+                <div class="instruction-grid">
+                    <div class="instruction-card">
+                        <h4>FROM</h4>
+                        <p>Specifies the base image</p>
+                        <div class="code-block">
+                            <pre><code>FROM python:3.9-slim</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>WORKDIR</h4>
+                        <p>Sets the working directory</p>
+                        <div class="code-block">
+                            <pre><code>WORKDIR /app</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>COPY</h4>
+                        <p>Copies files from host to container</p>
+                        <div class="code-block">
+                            <pre><code>COPY . /app</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>ADD</h4>
+                        <p>Similar to COPY but with URL support</p>
+                        <div class="code-block">
+                            <pre><code>ADD file.tar.gz /app</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>RUN</h4>
+                        <p>Executes commands during build</p>
+                        <div class="code-block">
+                            <pre><code>RUN pip install -r requirements.txt</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>CMD</h4>
+                        <p>Default command when container starts</p>
+                        <div class="code-block">
+                            <pre><code>CMD ["python", "app.py"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>ENTRYPOINT</h4>
+                        <p>Configures container as executable</p>
+                        <div class="code-block">
+                            <pre><code>ENTRYPOINT ["python"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>EXPOSE</h4>
+                        <p>Documents which ports to expose</p>
+                        <div class="code-block">
+                            <pre><code>EXPOSE 8080</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>ENV</h4>
+                        <p>Sets environment variables</p>
+                        <div class="code-block">
+                            <pre><code>ENV APP_ENV=production</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>VOLUME</h4>
+                        <p>Creates a mount point</p>
+                        <div class="code-block">
+                            <pre><code>VOLUME ["/data"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>USER</h4>
+                        <p>Sets the user for RUN, CMD, ENTRYPOINT</p>
+                        <div class="code-block">
+                            <pre><code>USER appuser</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="instruction-card">
+                        <h4>ARG</h4>
+                        <p>Defines build-time variables</p>
+                        <div class="code-block">
+                            <pre><code>ARG VERSION=1.0</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="best-practices">
+                <h3>Dockerfile Best Practices</h3>
+                <div class="practices-grid">
+                    <div class="practice-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Use Official Base Images</h4>
+                        <p>Start with official, verified images from Docker Hub</p>
+                    </div>
+                    <div class="practice-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Minimize Layers</h4>
+                        <p>Combine related commands to reduce image size</p>
+                    </div>
+                    <div class="practice-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Use .dockerignore</h4>
+                        <p>Exclude unnecessary files from build context</p>
+                    </div>
+                    <div class="practice-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Order Instructions Wisely</h4>
+                        <p>Put frequently changing instructions at the end</p>
+                    </div>
+                    <div class="practice-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Use Multi-Stage Builds</h4>
+                        <p>Reduce final image size by using multiple FROM statements</p>
+                    </div>
+                    <div class="practice-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Run as Non-Root User</h4>
+                        <p>Improve security by avoiding root user</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="section">
+        <div class="container">
+            <h2 class="section-title">Practical Examples</h2>
+            
+            <div class="examples-tabs">
+                <div class="example-buttons">
+                    <button class="example-btn active" data-example="python">
+                        <i class="fab fa-python"></i> Python Flask
+                    </button>
+                    <button class="example-btn" data-example="node">
+                        <i class="fab fa-node-js"></i> Node.js
+                    </button>
+                    <button class="example-btn" data-example="nginx">
+                        <i class="fas fa-server"></i> Nginx
+                    </button>
+                    <button class="example-btn" data-example="multi">
+                        <i class="fas fa-layer-group"></i> Multi-Stage
+                    </button>
+                </div>
+
+                <div class="example-content active" id="python">
+                    <h3>Python Flask Application</h3>
+                    
+                    <div class="file-section">
+                        <h4>app.py</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code>from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "&lt;h1&gt;Hello from Docker!&lt;/h1&gt;"
+
+@app.route('/health')
+def health():
+    return {"status": "healthy"}
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>requirements.txt</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code>Flask==2.3.0
+gunicorn==20.1.0</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Dockerfile</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Use official Python runtime
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements file
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY app.py .
+
+# Expose port
+EXPOSE 5000
+
+# Run the application
+CMD ["python", "app.py"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Build & Run Commands</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Build the image
+docker build -t flask-app:v1 .
+
+# Run the container
+docker run -d -p 5000:5000 --name my-flask-app flask-app:v1
+
+# View logs
+docker logs my-flask-app
+
+# Test the application
+curl http://localhost:5000</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-content" id="node">
+                    <h3>Node.js Express Application</h3>
+                    
+                    <div class="file-section">
+                        <h4>app.js</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code>const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('&lt;h1&gt;Hello from Node.js Docker Container!&lt;/h1&gt;');
+});
+
+app.get('/api/status', (req, res) => {
+  res.json({ status: 'running', timestamp: new Date() });
+});
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`App listening on port ${port}`);
+});</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>package.json</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code>{
+  "name": "docker-node-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Dockerfile</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Use official Node.js runtime
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy application code
+COPY app.js .
+
+# Expose port
+EXPOSE 3000
+
+# Run the application
+CMD ["npm", "start"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Build & Run Commands</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Build the image
+docker build -t node-app:v1 .
+
+# Run the container
+docker run -d -p 3000:3000 --name my-node-app node-app:v1
+
+# View logs
+docker logs -f my-node-app
+
+# Test the application
+curl http://localhost:3000</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-content" id="nginx">
+                    <h3>Static Website with Nginx</h3>
+                    
+                    <div class="file-section">
+                        <h4>index.html</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Docker Nginx Demo&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Welcome to Dockerized Nginx!&lt;/h1&gt;
+        &lt;p&gt;This static site is served by Nginx in a Docker container.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Dockerfile</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Use official Nginx image
+FROM nginx:alpine
+
+# Copy static files to Nginx directory
+COPY index.html /usr/share/nginx/html/
+
+# Expose port 80
+EXPOSE 80
+
+# Nginx starts automatically</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Build & Run Commands</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Build the image
+docker build -t nginx-site:v1 .
+
+# Run the container
+docker run -d -p 8080:80 --name my-nginx nginx-site:v1
+
+# Test the application
+curl http://localhost:8080
+
+# Stop and remove
+docker stop my-nginx
+docker rm my-nginx</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-content" id="multi">
+                    <h3>Multi-Stage Build (Go Application)</h3>
+                    
+                    <div class="file-section">
+                        <h4>main.go</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code>package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "&lt;h1&gt;Hello from Go in Docker!&lt;/h1&gt;")
+}
+
+func main() {
+    http.HandleFunc("/", handler)
+    fmt.Println("Server starting on :8080")
+    http.ListenAndServe(":8080", nil)
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Dockerfile (Multi-Stage)</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Stage 1: Build
+FROM golang:1.20-alpine AS builder
+
+WORKDIR /app
+
+COPY main.go .
+
+RUN go build -o main .
+
+# Stage 2: Production
+FROM alpine:latest
+
+WORKDIR /root/
+
+# Copy only the binary from builder
+COPY --from=builder /app/main .
+
+EXPOSE 8080
+
+CMD ["./main"]</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="file-section">
+                        <h4>Build & Run Commands</h4>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <pre><code># Build the image
+docker build -t go-app:v1 .
+
+# Run the container
+docker run -d -p 8080:8080 --name my-go-app go-app:v1
+
+# Check image size (notice how small it is!)
+docker images go-app:v1
+
+# Test the application
+curl http://localhost:8080</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4><i class="fas fa-lightbulb"></i> Why Multi-Stage Builds?</h4>
+                        <ul>
+                            <li>Significantly reduces final image size</li>
+                            <li>Keeps build tools out of production image</li>
+                            <li>Improves security by minimizing attack surface</li>
+                            <li>Faster deployment and startup times</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fab fa-docker"></i> Docker Tutorial</h4>
+                    <p>Learn Docker from basics to advanced concepts with practical examples.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#commands">Commands</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://docs.docker.com" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://hub.docker.com" target="_blank">Docker Hub</a></li>
+                        <li><a href="https://github.com/docker" target="_blank">Docker on GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Docker Tutorial.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
